@@ -85,6 +85,9 @@ class Calculator(Tk):
         self.Button_clr = Button(self.frame, text = "Clear", command=lambda: self.clear())
         self.Button_clr.grid(row = 0, column = 4)
 
+        self.Button_ce = Button(self.frame, text = "CE", command=lambda: self.ce())
+        self.Button_ce.grid(row = 0, column = 1)
+
 #TESTING BUTTON INITIALIZATION:
 ##        self.op_test_Button = Button(self.frame, text="op", command=lambda: self.op_test())
 ##        self.op_test_Button.grid(row = 5, column = 1)
@@ -96,7 +99,7 @@ class Calculator(Tk):
 ##        self.op_test_Button.grid(row = 5, column = 3)
 
 
-#CLEAR/RESET BUTTON METHOD:
+#CLEAR BUTTON METHOD:
     def clear(self):
         self.screen_var.set(0)
         self.var_1.set("")
@@ -105,6 +108,19 @@ class Calculator(Tk):
         self.var_2_pos = "open"
         self.op_var.set("")
         self.screen["text"] = self.screen_var.get()
+
+
+#CLEAR ENTRY BUTTON METHOD:
+    def ce(self):
+        if self.var_2.get() == "":
+            self.screen_var.set(0)
+            self.var_1.set("")
+            self.screen["text"] = self.screen_var.get()
+        else:
+            self.screen_var.set(0)
+            self.var_2.set("")
+            self.screen["text"] = self.screen_var.get()
+        
 
 #OPERATOR METHODS:
     def div_var(self):
@@ -210,5 +226,6 @@ class Calculator(Tk):
 
 
 root = Calculator()
+root.resizable(width=False, height=False)
 root.mainloop()
 
